@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #021a2e;
+}
+
+.container {
+    display: flex;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.container .item {
+    width: 120px;
+    height: 180px;
+    overflow: hidden;
+    transition: 0.5s;
+    filter: brightness(0);
+}
+
+.container .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container:hover .item:hover {
+    filter: brightness(100%);
+    transform: translateZ(200px);
+}
+
+.container:hover .item:hover + * {
+    filter: brightness(70%);
+    transform: translateZ(150px) rotateY(40deg);
+}
+
+.container:hover .item:hover + * + * {
+    filter: brightness(30%);
+    transform: translateZ(80px) rotateY(20deg);
+}
+
+.container:hover .item:hover + * + * + * {
+    filter: brightness(10%);
+    transform: translateZ(40px) rotateY(10deg);
+}
+
+/* Previous items animation */
+.container:hover .item:has( + *:hover) {
+    filter: brightness(70%);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+
+.container:hover .item:has( + * + *:hover) {
+    filter: brightness(30%);
+    transform: translateZ(80px) rotateY(-20deg);
+}
+
+.container:hover .item:has( + * + * + *:hover) {
+    filter: brightness(10%);
+    transform: translateZ(40px) rotateY(-10deg);
+}
